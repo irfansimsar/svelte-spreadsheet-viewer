@@ -1,0 +1,30 @@
+<script>
+  export let type;
+</script>
+
+<button class="btn btn-{type}" {...$$restProps}>	
+  <slot></slot>
+</button>
+
+<style>
+  .btn {
+    background: var(--color-primary);
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    cursor: pointer;
+    padding: 10px 20px;
+  }
+
+  .btn:hover {
+    opacity: .8;
+  }
+
+  .btn-secondary {
+    background: var(--color-secondary);
+  }
+
+  .btn-plain {
+    background: var(--color-text);
+  }
+</style>

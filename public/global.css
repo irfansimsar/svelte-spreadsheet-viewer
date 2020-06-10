@@ -1,3 +1,9 @@
+:root {
+	--color-primary: #ff3e00;
+	--color-secondary: #40b3ff;
+	--color-text: #676778;
+}
+
 html, body {
 	position: relative;
 	width: 100%;
