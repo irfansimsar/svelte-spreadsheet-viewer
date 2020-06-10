@@ -4,7 +4,6 @@
 	export let files;
 
 	$: if (files.length) {
-		console.log('*files', files)
 		parseExcel(files[0]);
 	}
 
@@ -12,9 +11,8 @@
 		const table = document.querySelector('table');
 		table.innerHTML = `
 			${data.map(row => `
-					<tr>${Object.keys(row).map((col, index) => `<td>${col === 'image' ? `<img src="${row[col]}" height="200" />` : row[col]}</td>`).join('')}</tr>
-					`
-			).join('')}
+					<tr>${Object.keys(row).map((col) => `<td>${col === 'image' ? `<img src="${row[col]}" height="200" />` : row[col]}</td>`).join('')}</tr>
+			`).join('')}
 		`;
 	}
 
@@ -27,15 +25,15 @@
 				type: 'binary'
 			});
 
-			workbook.SheetNames.forEach(function(sheetName) {
+			workbook.SheetNames.forEach((sheetName) => {
 				const rowObject = xlsx.utils.sheet_to_row_object_array(workbook.Sheets[sheetName]);
 				printTable(rowObject);
 			});
-		}
+		};
 
 		reader.onerror = function(e) {
-			console.error(e)
-		}
+			console.error(e);
+		};
 
 		reader.readAsBinaryString(file);
 	}
