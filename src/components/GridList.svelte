@@ -1,21 +1,21 @@
 <script>
-  import { Image } from './UI';
-  import { columns } from '../stores.js';
-  export let data;
+	import { Image } from './UI';
+	import { columns } from '../stores.js';
+	export let data;
 
-  function isImage(key) {
-    const column = $columns.find(col => col.id === key);
-    return column && column.isImage;
-  }
+	function isImage(key) {
+		const column = $columns.find(col => col.id === key);
+		return column && column.isImage;
+	}
 
-  function isVisible(key) {
-    const column = $columns.find(col => col.id === key);
-    return column && column.isVisible;
-  }
+	function isVisible(key) {
+		const column = $columns.find(col => col.id === key);
+		return column && column.isVisible;
+	}
 
-  columns.subscribe(value => {
-    data = [...data]
-  })
+	columns.subscribe(() => {
+		data = [...data];
+	});
 </script>
 
 <div>
