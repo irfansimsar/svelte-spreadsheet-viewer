@@ -1,21 +1,14 @@
 <script>
 	import xlsx from 'xlsx';
 	import ColumnSettings from './components/ColumnSettings.svelte';
+	import GridList from './components/GridList.svelte';
 	import { columns } from './stores.js';
 	export let name;
 	export let files;
+	export let data;
 
 	$: if (files.length) {
 		parseExcel(files[0]);
-	}
-
-	function printTable(data) {
-		const table = document.querySelector('table');
-		table.innerHTML = `
-			${data.map(row => `
-					<tr>${Object.keys(row).map((col) => `<td>${col === 'image' ? `<img src="${row[col]}" height="200" />` : row[col]}</td>`).join('')}</tr>
-			`).join('')}
-		`;
 	}
 
 	function parseExcel(file) {
@@ -36,8 +29,8 @@
 						isImage: false
 					};
 				});
-				printTable(rowObject);
 				columns.set(keys);
+				data = rowObject;
 			});
 		};
 
@@ -63,7 +56,7 @@
 				bind:files>
 		</div>
 	{:else}
-		<table></table>
+		<GridList {data} />
 	{/if}
 </main>
 
