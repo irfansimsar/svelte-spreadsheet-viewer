@@ -1,7 +1,9 @@
 <script>
 	import xlsx from 'xlsx';
+	import ColumnSettings from './components/ColumnSettings.svelte';
 	export let name;
 	export let files;
+	export let columns;
 
 	$: if (files.length) {
 		parseExcel(files[0]);
@@ -27,6 +29,15 @@
 
 			workbook.SheetNames.forEach((sheetName) => {
 				const rowObject = xlsx.utils.sheet_to_row_object_array(workbook.Sheets[sheetName]);
+				const keys = Object.keys(rowObject[0]).map(col => {
+					return {
+						id: col,
+						isVisible: true,
+						isImage: false
+					};
+				});
+				columns = keys;
+
 				printTable(rowObject);
 			});
 		};
@@ -41,6 +52,9 @@
 
 <main>
 	<h1>{name}</h1>
+
+	<ColumnSettings {columns} />
+
 	{#if !files.length}
 		<div class="drop-area">
 			Upload your spreadsheet file!
