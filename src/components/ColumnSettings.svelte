@@ -1,9 +1,9 @@
 <script>
-  export let columns;
+  import { columns } from '../stores.js';
 </script>
 
 <div class="column-settings">
-  {#each columns as column}
+  {#each $columns as column}
     <div class="column">
       <h3>{column.id}</h3>
       <label>Is Visible <input type="checkbox" bind:checked={column.isVisible} /></label>

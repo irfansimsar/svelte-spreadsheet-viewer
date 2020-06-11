@@ -1,9 +1,9 @@
 <script>
 	import xlsx from 'xlsx';
 	import ColumnSettings from './components/ColumnSettings.svelte';
+	import { columns } from './stores.js';
 	export let name;
 	export let files;
-	export let columns;
 
 	$: if (files.length) {
 		parseExcel(files[0]);
@@ -22,8 +22,8 @@
 		const reader = new FileReader();
 
 		reader.onload = function(e) {
-			const data = e.target.result;
-			const workbook = xlsx.read(data, {
+			const result = e.target.result;
+			const workbook = xlsx.read(result, {
 				type: 'binary'
 			});
 
@@ -36,9 +36,8 @@
 						isImage: false
 					};
 				});
-				columns = keys;
-
 				printTable(rowObject);
+				columns.set(keys);
 			});
 		};
 
@@ -53,7 +52,7 @@
 <main>
 	<h1>{name}</h1>
 
-	<ColumnSettings {columns} />
+	<ColumnSettings />
 
 	{#if !files.length}
 		<div class="drop-area">
