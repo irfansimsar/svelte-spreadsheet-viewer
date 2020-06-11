@@ -65,7 +65,7 @@
 		width: 100%;
 		text-align: center;
 		padding: 1em;
-		max-width: 660px;
+		max-width: 80%;
 		margin: 0 auto;
 	}
 

@@ -18,30 +18,30 @@
 	});
 </script>
 
-<div>
-  <pre>{JSON.stringify($columns)}</pre>
-  {#each data as item}
-    <div class="row">
-      {#each Object.keys(item) as key}
-        {#if isVisible(key)}
-          {#if isImage(key)}
-            <span><Image src={item[key]} /></span>
-          {:else}
-            <span>{item[key]}</span>
-          {/if}
-        {/if}
-      {/each}
-    </div>
-  {/each}
-</div>
+{#each data as item}
+	<div class="row">
+		{#each Object.keys(item) as key}
+			{#if isVisible(key)}
+				{#if isImage(key)}
+					<div><Image src={item[key]} /></div>
+				{:else}
+					<div>{item[key]}</div>
+				{/if}
+			{/if}
+		{/each}
+	</div>
+{/each}
 
 <style>
   .row {
-    display: table-row;
+		border-bottom: 1px solid var(--color-text-light);
+		margin-bottom: 3px;
+		padding: 10px 20px;
+		display: flex;
+		align-items: center;
   }
-  .row span {
-    width: 20%;
-    display: inline-block;
-    padding: 5px;
-  }
+  .row div {
+		flex-grow: 1;
+		flex-basis: 0;
+	}
 </style>
