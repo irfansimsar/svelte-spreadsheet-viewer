@@ -4,7 +4,7 @@
 	export let total = 20;
 	export let onChange = () => {};
 
-	const pages = [...Array(total / pageSize).keys()];
+	const pages = [...Array(Math.ceil(total / pageSize)).keys()];
 	const handleOnChange = (page) => {
 		current = page;
 		onChange(page);
