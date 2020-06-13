@@ -1,7 +1,9 @@
 <script>
-	import { Image } from './UI';
+	import { Image, Pagination } from './UI';
 	import { columns, items } from '../stores.js';
+	const pageSize = 10;
 	let listItems = $items || [];
+	let currentPage = 1;
 	
 	function isImage(key) {
 		const column = $columns.find(col => col.id === key);
@@ -13,8 +15,17 @@
 		return column && column.isVisible;
 	}
 
+	function onChange(page) {
+		currentPage = page;
+		const skip = (currentPage - 1) * pageSize;
+		const limit = skip + pageSize;
+		listItems = [...$items.slice(skip, limit)];
+	}
+
 	columns.subscribe(() => {
-		listItems = [...listItems];
+		const skip = (currentPage - 1) * pageSize;
+		const limit = skip + pageSize;
+		listItems = [...$items.slice(skip, limit)];
 	});
 </script>
 
@@ -31,6 +42,12 @@
 		{/each}
 	</div>
 {/each}
+
+<Pagination
+	pageSize={pageSize}
+	total={$items.length}
+	onChange={onChange}
+/>
 
 <style>
   .row {
