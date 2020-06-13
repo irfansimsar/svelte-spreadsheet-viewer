@@ -44,7 +44,7 @@
 
 <main>
 	<h1>{name}</h1>
-	<pre>*__*items{JSON.stringify(items, null, 2)}</pre>
+
 	<ColumnSettings />
 
 	{#if !$items.length}
