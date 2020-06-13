@@ -1,8 +1,12 @@
 <script>
   export let type;
+  export let onClick = () => {};
 </script>
 
-<button class="btn btn-{type}" {...$$restProps}>	
+<button
+  class="btn btn-{type}"
+  on:click={onClick}
+  {...$$restProps}>
   <slot></slot>
 </button>
 
