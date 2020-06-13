@@ -23,3 +23,9 @@ items.subscribe(value => {
 		localStorage.setItem(`${STORE_PREFIX}items`, JSON.stringify(value));
 	}
 });
+
+// Reset Storeage
+export const reset = () => {
+	columns.set([]);
+	items.set([]);
+};

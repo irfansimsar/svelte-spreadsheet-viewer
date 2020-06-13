@@ -1,9 +1,9 @@
 <script>
 	import xlsx from 'xlsx';
+	import Header from './components/Header.svelte';
 	import ColumnSettings from './components/ColumnSettings.svelte';
 	import GridList from './components/GridList.svelte';
 	import { columns, items } from './stores.js';
-	export let name;
 	export let files;
 
 	$: if (files.length) {
@@ -43,7 +43,7 @@
 </script>
 
 <main>
-	<h1>{name}</h1>
+	<Header />
 
 	<ColumnSettings />
 
@@ -67,13 +67,6 @@
 		padding: 1em;
 		max-width: 80%;
 		margin: 0 auto;
-	}
-
-	h1 {
-		color: #ff3e00;
-		text-transform: uppercase;
-		font-size: 4em;
-		font-weight: 100;
 	}
 
 	.drop-area {
