@@ -1,8 +1,8 @@
 <script>
 	import { Image } from './UI';
-	import { columns } from '../stores.js';
-	export let data;
-
+	import { columns, items } from '../stores.js';
+	let listItems = $items || [];
+	
 	function isImage(key) {
 		const column = $columns.find(col => col.id === key);
 		return column && column.isImage;
@@ -14,11 +14,11 @@
 	}
 
 	columns.subscribe(() => {
-		data = [...data];
+		listItems = [...listItems];
 	});
 </script>
 
-{#each data as item}
+{#each listItems as item}
 	<div class="row">
 		{#each Object.keys(item) as key}
 			{#if isVisible(key)}

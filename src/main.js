@@ -4,8 +4,7 @@ const app = new App({
 	target: document.body,
 	props: {
 		name: 'Spreadsheet Viewer',
-		files: [],
-		data: []
+		files: []
 	}
 });
 

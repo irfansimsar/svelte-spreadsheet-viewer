@@ -2,10 +2,9 @@
 	import xlsx from 'xlsx';
 	import ColumnSettings from './components/ColumnSettings.svelte';
 	import GridList from './components/GridList.svelte';
-	import { columns } from './stores.js';
+	import { columns, items } from './stores.js';
 	export let name;
 	export let files;
-	export let data;
 
 	$: if (files.length) {
 		parseExcel(files[0]);
@@ -30,7 +29,7 @@
 					};
 				});
 				columns.set(keys);
-				data = rowObject;
+				items.set(rowObject);
 			});
 		};
 
@@ -40,14 +39,15 @@
 
 		reader.readAsBinaryString(file);
 	}
+	console.log(items);
 </script>
 
 <main>
 	<h1>{name}</h1>
-
+	<pre>*__*items{JSON.stringify(items, null, 2)}</pre>
 	<ColumnSettings />
 
-	{#if !files.length}
+	{#if !$items.length}
 		<div class="drop-area">
 			Upload your spreadsheet file!
 			<input
@@ -56,7 +56,7 @@
 				bind:files>
 		</div>
 	{:else}
-		<GridList {data} />
+		<GridList />
 	{/if}
 </main>
 
