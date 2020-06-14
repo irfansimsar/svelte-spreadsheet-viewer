@@ -6,20 +6,25 @@
   {#each $columns as column}
     <div class="column">
       <h3>{column.id}</h3>
-      <label>Is Visible <input type="checkbox" bind:checked={column.isVisible} /></label>
-      <label>Is Editable <input type="checkbox" bind:checked={column.isEditable} /></label>
-      <label>Is Image <input type="checkbox" bind:checked={column.isImage} /></label>
+      <label>visible <input type="checkbox" bind:checked={column.isVisible} /></label>
+      <label>editable <input type="checkbox" bind:checked={column.isEditable} /></label>
+      <label>image <input type="checkbox" bind:checked={column.isImage} /></label>
     </div>
 	{/each}
 </div>
 
 <style>
+  .column-settings {
+    margin-bottom: 50px;
+  }
+
   .column {
     font-size: 12px;
-    box-shadow: 0px 0px 5px 0px rgba(168,168,168,0.5);
-    margin: 5px;
+    box-shadow: 0px 0px 10px 0px rgba(208, 208, 208, 0.5);
+    margin: 10px;
     padding: 10px;
     display: inline-block;
+    text-align: right;
   }
 
   .column h3 {
