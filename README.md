@@ -21,7 +21,7 @@ This is a hobby project to view and edit basic xlsx/xls spreadsheet files with s
 
 # Usage
 
-spreadsheet-viewer.blablabla.com -
+[https://svelte-spreadsheet-viewer.surge.sh/](https://svelte-spreadsheet-viewer.surge.sh/)
 
 or your local
 
