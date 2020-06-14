@@ -35,6 +35,12 @@
 </script>
 
 <div class="grid-list">
+	<div class="row">
+		{#each Object.keys(listItems[0]) as key}
+			<div><strong>{key}</strong></div>
+		{/each}
+	</div>
+
 	{#each listItems as item}
 		<div class="row">
 			{#each Object.keys(item) as key}
