@@ -37,7 +37,7 @@
   .pagination button.current {
     background: var(--color-primary);
     border-color: var(--color-primary);
-    color: #fff;
+    color: var(--color-white);
     opacity: .8;
   }
 

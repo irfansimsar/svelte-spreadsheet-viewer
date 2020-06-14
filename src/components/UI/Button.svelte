@@ -15,7 +15,7 @@
     background: var(--color-primary);
     border: none;
     border-radius: 4px;
-    color: #fff;
+    color: var(--color-white);
     cursor: pointer;
     padding: 10px 20px;
   }

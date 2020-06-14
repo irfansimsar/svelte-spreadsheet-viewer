@@ -65,13 +65,12 @@
 	main {
 		width: 100%;
 		text-align: center;
-		padding: 1em;
-		max-width: 80%;
+		padding: 20px 40px;
 		margin: 0 auto;
 	}
 
 	.drop-area {
-		border: 2px dashed #ddd;
+		border: 2px dashed var(--color-text-light);
 		display: inline-block;
 		padding: 50px;
 	}

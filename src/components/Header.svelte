@@ -26,7 +26,7 @@
   }
 
   h1 {
-		color: #ff3e00;
+		color: var(--color-primary);
 		text-transform: uppercase;
 		font-size: 4em;
     font-weight: 100;
@@ -39,7 +39,7 @@
 
   .with-menu {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
   }
 

@@ -20,7 +20,7 @@
 
   .column {
     font-size: 12px;
-    box-shadow: 0px 0px 10px 0px rgba(208, 208, 208, 0.5);
+    box-shadow: var(--box-shadow-light);
     margin: 10px;
     padding: 10px;
     display: inline-block;

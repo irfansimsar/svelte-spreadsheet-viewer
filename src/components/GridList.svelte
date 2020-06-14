@@ -78,9 +78,6 @@
 		margin-bottom: 3px;
 		padding: 10px 20px;
 		display: table-row;
-		/* display: flex;
-		flex-flow: row wrap;
-		align-items: center; */
 	}
 
   .row div {
@@ -88,17 +85,19 @@
 		display: table-cell;
 		padding: 10px;
 		border-bottom: 1px solid var(--color-text-light);
-		/* flex-grow: 1;
-		flex-basis: 0; */
 	}
 
 	.row :global(img) {
 		min-width: 200px;
-		transition: .3s ease all;
+		transition: var(--transition-all);
 	}
 
 	.row :global(img):hover {
 		transform: scale(2);
-		box-shadow: 0px 0px 7px 0px rgba(0, 0, 0, 0.5);
+		box-shadow: var(--box-shadow);
+	}
+
+	.row input {
+		margin-top: 10px;
 	}
 </style>
