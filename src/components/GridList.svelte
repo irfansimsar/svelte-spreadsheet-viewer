@@ -1,13 +1,18 @@
 <script>
 	import { Image, Pagination } from './UI';
 	import { columns, items } from '../stores.js';
-	const pageSize = 10;
 	let listItems = $items || [];
+	const pageSize = 10;
 	let currentPage = 1;
-	
+
 	function isImage(key) {
 		const column = $columns.find(col => col.id === key);
 		return column && column.isImage;
+	}
+	
+	function isEditable(key) {
+		const column = $columns.find(col => col.id === key);
+		return column && column.isEditable;
 	}
 
 	function isVisible(key) {
@@ -29,19 +34,28 @@
 	});
 </script>
 
-{#each listItems as item}
-	<div class="row">
-		{#each Object.keys(item) as key}
-			{#if isVisible(key)}
-				{#if isImage(key)}
-					<div><Image src={item[key]} /></div>
-				{:else}
-					<div>{item[key]}</div>
+<div class="grid-list">
+	{#each listItems as item}
+		<div class="row">
+			{#each Object.keys(item) as key}
+				{#if isVisible(key)}
+					<div>
+						{#if isImage(key)}
+							<a href={item[key]} target="_blank">
+								<Image src={item[key]} />
+							</a>
+						{:else}
+							{item[key]}
+						{/if}
+						{#if isEditable(key)}
+							<input bind:value={item[key]} />
+						{/if}
+					</div>
 				{/if}
-			{/if}
-		{/each}
-	</div>
-{/each}
+			{/each}
+		</div>
+	{/each}
+</div>
 
 <Pagination
 	pageSize={pageSize}
@@ -50,15 +64,35 @@
 />
 
 <style>
+	.grid-list {
+		display: table;
+	}
+
   .row {
-		border-bottom: 1px solid var(--color-text-light);
 		margin-bottom: 3px;
 		padding: 10px 20px;
-		display: flex;
-		align-items: center;
-  }
+		display: table-row;
+		/* display: flex;
+		flex-flow: row wrap;
+		align-items: center; */
+	}
+
   .row div {
-		flex-grow: 1;
-		flex-basis: 0;
+		max-width: 300px;
+		display: table-cell;
+		padding: 10px;
+		border-bottom: 1px solid var(--color-text-light);
+		/* flex-grow: 1;
+		flex-basis: 0; */
+	}
+
+	.row :global(img) {
+		min-width: 200px;
+		transition: .3s ease all;
+	}
+
+	.row :global(img):hover {
+		transform: scale(2);
+		box-shadow: 0px 0px 7px 0px rgba(0, 0, 0, 0.5);
 	}
 </style>

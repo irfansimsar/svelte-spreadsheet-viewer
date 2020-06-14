@@ -7,6 +7,7 @@
     <div class="column">
       <h3>{column.id}</h3>
       <label>Is Visible <input type="checkbox" bind:checked={column.isVisible} /></label>
+      <label>Is Editable <input type="checkbox" bind:checked={column.isEditable} /></label>
       <label>Is Image <input type="checkbox" bind:checked={column.isImage} /></label>
     </div>
 	{/each}

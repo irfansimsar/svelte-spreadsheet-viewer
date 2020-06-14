@@ -25,6 +25,7 @@
 					return {
 						id: col,
 						isVisible: true,
+						isEditable: false,
 						isImage: false
 					};
 				});
