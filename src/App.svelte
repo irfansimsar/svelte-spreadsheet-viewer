@@ -40,7 +40,6 @@
 
 	  reader.readAsBinaryString(file);
 	}
-	console.log(items);
 </script>
 
 <main>

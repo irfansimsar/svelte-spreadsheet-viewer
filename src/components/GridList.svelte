@@ -31,6 +31,11 @@
     const skip = (currentPage - 1) * pageSize;
     const limit = skip + pageSize;
     listItems = [...$items.slice(skip, limit)];
+    listItems.forEach(item => {
+      Object.keys(item).forEach(key => {
+        if (!isVisible(key)) delete item[key];
+      });
+    });
   });
 </script>
 
@@ -44,20 +49,18 @@
 	{#each listItems as item}
 		<div class="row">
 			{#each Object.keys(item) as key}
-				{#if isVisible(key)}
-					<div>
-						{#if isImage(key)}
-							<a href={item[key]} target="_blank">
-								<Image src={item[key]} />
-							</a>
-						{:else}
-							{item[key]}
-						{/if}
-						{#if isEditable(key)}
-							<input bind:value={item[key]} />
-						{/if}
-					</div>
-				{/if}
+				<div>
+					{#if isImage(key)}
+						<a href={item[key]} target="_blank">
+							<Image src={item[key]} />
+						</a>
+					{:else}
+						{item[key]}
+					{/if}
+					{#if isEditable(key)}
+						<input bind:value={item[key]} />
+					{/if}
+				</div>
 			{/each}
 		</div>
 	{/each}
