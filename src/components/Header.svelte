@@ -26,9 +26,9 @@
   }
 
   h1 {
-		color: var(--color-primary);
-		text-transform: uppercase;
-		font-size: 4em;
+    color: var(--color-primary);
+    text-transform: uppercase;
+    font-size: 4em;
     font-weight: 100;
     margin: 0;
   }

@@ -10,7 +10,7 @@
       <label>editable <input type="checkbox" bind:checked={column.isEditable} /></label>
       <label>image <input type="checkbox" bind:checked={column.isImage} /></label>
     </div>
-	{/each}
+  {/each}
 </div>
 
 <style>
