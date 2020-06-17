@@ -1,14 +1,14 @@
 <script>
-	import xlsx from 'xlsx';
-	import { items, reset } from '../stores.js';
-	import { Button } from './UI';
+  import xlsx from 'xlsx';
+  import { items, reset } from '../stores.js';
+  import { Button } from './UI';
 
-	function exportFile() {
-		const ws = xlsx.utils.json_to_sheet($items);
-		const wb = xlsx.utils.book_new();
-		xlsx.utils.book_append_sheet(wb, ws, "Spreadsheet Viewer");
-		xlsx.writeFile(wb, "svelte-spreadsheet.xlsx");
-	}
+  function exportFile() {
+    const ws = xlsx.utils.json_to_sheet($items);
+    const wb = xlsx.utils.book_new();
+    xlsx.utils.book_append_sheet(wb, ws, "Spreadsheet Viewer");
+    xlsx.writeFile(wb, "svelte-spreadsheet.xlsx");
+  }
 </script>
 
 <header class={$items.length ? 'with-menu' : ''}>

@@ -7,38 +7,38 @@
 	export let files;
 
 	$: if (files.length) {
-		parseExcel(files[0]);
+	  parseExcel(files[0]);
 	}
 
 	function parseExcel(file) {
-		const reader = new FileReader();
+	  const reader = new FileReader();
 
-		reader.onload = function(e) {
-			const result = e.target.result;
-			const workbook = xlsx.read(result, {
-				type: 'binary'
-			});
+	  reader.onload = function(e) {
+	    const result = e.target.result;
+	    const workbook = xlsx.read(result, {
+	      type: 'binary'
+	    });
 
-			workbook.SheetNames.forEach((sheetName) => {
-				const rowObject = xlsx.utils.sheet_to_row_object_array(workbook.Sheets[sheetName]);
-				const keys = Object.keys(rowObject[0]).map(col => {
-					return {
-						id: col,
-						isVisible: true,
-						isEditable: false,
-						isImage: false
-					};
-				});
-				columns.set(keys);
-				items.set(rowObject);
-			});
-		};
+	    workbook.SheetNames.forEach((sheetName) => {
+	      const rowObject = xlsx.utils.sheet_to_row_object_array(workbook.Sheets[sheetName]);
+	      const keys = Object.keys(rowObject[0]).map(col => {
+	        return {
+	          id: col,
+	          isVisible: true,
+	          isEditable: false,
+	          isImage: false
+	        };
+	      });
+	      columns.set(keys);
+	      items.set(rowObject);
+	    });
+	  };
 
-		reader.onerror = function(e) {
-			console.error(e);
-		};
+	  reader.onerror = function(e) {
+	    console.error(e);
+	  };
 
-		reader.readAsBinaryString(file);
+	  reader.readAsBinaryString(file);
 	}
 	console.log(items);
 </script>

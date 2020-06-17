@@ -1,14 +1,14 @@
 <script>
-	export let current = 1;
-	export let pageSize = 20;
-	export let total = 20;
-	export let onChange = () => {};
+  export let current = 1;
+  export let pageSize = 20;
+  export let total = 20;
+  export let onChange = () => {};
 
-	const pages = [...Array(Math.ceil(total / pageSize)).keys()];
-	const handleOnChange = (page) => {
-		current = page;
-		onChange(page);
-	};
+  const pages = [...Array(Math.ceil(total / pageSize)).keys()];
+  const handleOnChange = (page) => {
+    current = page;
+    onChange(page);
+  };
 </script>
 
 <div class="pagination">

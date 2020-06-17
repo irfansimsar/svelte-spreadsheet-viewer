@@ -1,37 +1,37 @@
 <script>
-	import { Image, Pagination } from './UI';
-	import { columns, items } from '../stores.js';
-	let listItems = $items || [];
-	const pageSize = 10;
-	let currentPage = 1;
+  import { Image, Pagination } from './UI';
+  import { columns, items } from '../stores.js';
+  let listItems = $items || [];
+  const pageSize = 10;
+  let currentPage = 1;
 
-	function isImage(key) {
-		const column = $columns.find(col => col.id === key);
-		return column && column.isImage;
-	}
+  function isImage(key) {
+    const column = $columns.find(col => col.id === key);
+    return column && column.isImage;
+  }
 	
-	function isEditable(key) {
-		const column = $columns.find(col => col.id === key);
-		return column && column.isEditable;
-	}
+  function isEditable(key) {
+    const column = $columns.find(col => col.id === key);
+    return column && column.isEditable;
+  }
 
-	function isVisible(key) {
-		const column = $columns.find(col => col.id === key);
-		return column && column.isVisible;
-	}
+  function isVisible(key) {
+    const column = $columns.find(col => col.id === key);
+    return column && column.isVisible;
+  }
 
-	function onChange(page) {
-		currentPage = page;
-		const skip = (currentPage - 1) * pageSize;
-		const limit = skip + pageSize;
-		listItems = [...$items.slice(skip, limit)];
-	}
+  function onChange(page) {
+    currentPage = page;
+    const skip = (currentPage - 1) * pageSize;
+    const limit = skip + pageSize;
+    listItems = [...$items.slice(skip, limit)];
+  }
 
-	columns.subscribe(() => {
-		const skip = (currentPage - 1) * pageSize;
-		const limit = skip + pageSize;
-		listItems = [...$items.slice(skip, limit)];
-	});
+  columns.subscribe(() => {
+    const skip = (currentPage - 1) * pageSize;
+    const limit = skip + pageSize;
+    listItems = [...$items.slice(skip, limit)];
+  });
 </script>
 
 <div class="grid-list">

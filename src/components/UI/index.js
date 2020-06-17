@@ -3,7 +3,7 @@ import Image from './Image.svelte';
 import Pagination from './Pagination.svelte';
 
 export {
-	Button,
-	Image,
-	Pagination,
+  Button,
+  Image,
+  Pagination,
 };
