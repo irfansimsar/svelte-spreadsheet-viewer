@@ -29,6 +29,7 @@
     background-color: #fefefe;
     display: block;
     width: 100%;
+    min-width: 80px;
     cursor: pointer;
     margin-bottom: 0;
     padding: 0 0 0 10px;
@@ -36,7 +37,7 @@
     border: 1px solid var(--color-text-light);
     -webkit-appearance: none;
     -moz-appearance: none;
-    line-height: 40px;
+    line-height: 38px;
     color: var(--color-text);
     font-size: 16px;
   }

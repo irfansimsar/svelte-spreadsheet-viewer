@@ -1,9 +1,13 @@
 <script>
-  import { Image, Pagination } from './UI';
+  import { Image, Pagination, Select } from './UI';
+  import ColumnSettings from './ColumnSettings.svelte';
   import { columns, items } from '../stores.js';
   let listItems = $items || [];
-  const pageSize = 10;
+  const pageSizes = [10, 25, 50, 100, 500];
+  let pageSize = 25;
   let currentPage = 1;
+  let skip = (currentPage - 1) * pageSize;
+  let limit = skip + pageSize;
   let isGrid = false;
 
   function isImage(key) {
@@ -23,13 +27,19 @@
 
   function onToggle(type) {
     isGrid = type === 'grid';
-    console.log('*isGrid', isGrid);
   }
 
   function onChange(page) {
     currentPage = page;
-    const skip = (currentPage - 1) * pageSize;
-    const limit = skip + pageSize;
+    skip = (currentPage - 1) * pageSize;
+    limit = skip + pageSize;
+    listItems = [...$items.slice(skip, limit)];
+  }
+
+  function onSelect(size) {
+    pageSize = size;
+    skip = (currentPage - 1) * pageSize;
+    limit = skip + pageSize;
     listItems = [...$items.slice(skip, limit)];
   }
 
@@ -38,18 +48,29 @@
   });
 </script>
 
-<div class={`grid-list ${isGrid ? 'grid' : 'list'}`}>
-  <div class="toggle-wrapper">
-    <button
-      on:click={() => onToggle('list')}
-      class="btn-list"
-    >list</button>
-    <button
-      on:click={() => onToggle('grid')}
-      class="btn-grid"
-    >grid</button>
-  </div>
+<div class="grid-head">
+  <ColumnSettings />
 
+  <div class="buttons">
+    <div class="toggle-wrapper">
+      <button
+        on:click={() => onToggle('list')}
+        class="btn-list"
+      >list</button>
+      <button
+        on:click={() => onToggle('grid')}
+        class="btn-grid"
+      >grid</button>
+    </div>
+
+    <Select
+      options={pageSizes}
+      defaultValue={25}
+      onChange={onSelect} />
+  </div>
+</div>
+
+<div class={`grid-list ${isGrid ? 'grid' : 'list'}`}>
   {#if !isGrid}
     <div class="row">
       {#each Object.keys(listItems[0]) as key}
@@ -89,22 +110,42 @@
 />
 
 <style>
-  .grid-list {
-    display: table;
-  }
-
-  .grid-list .toggle-wrapper {
+  /* Grid Head */
+  .grid-head {
+    width: 100%;
     display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
   }
 
-  .grid-list .toggle-wrapper button {
+  .grid-head .buttons {
+    height: 40px;
+    display: flex;
+    margin-left: 30px;
+  }
+
+  .grid-head .toggle-wrapper {
+    display: flex;
+    margin-right: 20px;
+  }
+
+  .grid-head .toggle-wrapper button {
     border: none;
     border-radius: 0;
+    line-height: 40px;
+    padding: 0 20px;
+    margin-bottom: 0;
   }
 
-  .grid-list .btn-list {
+  .grid-head .btn-list {
     background: var(--color-primary);
     color: var(--color-white);
+  }
+
+  /* Grid List */
+  .grid-list {
+    display: table;
   }
   
   .row {

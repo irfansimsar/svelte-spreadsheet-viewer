@@ -1,7 +1,6 @@
 <script>
   import xlsx from 'xlsx';
   import Header from './components/Header.svelte';
-  import ColumnSettings from './components/ColumnSettings.svelte';
   import GridList from './components/GridList.svelte';
   import { columns, items } from './stores.js';
   export let files;
@@ -44,8 +43,6 @@
 
 <main>
   <Header />
-
-  <ColumnSettings />
 
   {#if !$items.length}
     <div class="drop-area">

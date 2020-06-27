@@ -14,10 +14,6 @@
 </div>
 
 <style>
-  .column-settings {
-    margin-bottom: 50px;
-  }
-
   .column {
     font-size: 12px;
     box-shadow: var(--box-shadow-light);
