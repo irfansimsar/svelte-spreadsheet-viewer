@@ -27,6 +27,6 @@
   },
   "dependencies": {
     "sirv-cli": "^0.4.4",
-    "xlsx": "^0.16.2"
+    "xlsx": "^0.17.0"
   }
 }
